@@ -8,13 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import {
-  Menu,
-  MenuGroup,
-  MenuItem,
-  MenuPopup,
-  MenuTrigger,
-} from "../ui/menu";
+import { Menu, MenuGroup, MenuItem, MenuPopup, MenuTrigger } from "../ui/menu";
 import Link from "next/link";
 import {
   IconAppsFilled,
@@ -38,6 +32,7 @@ import { useMutation } from "urql";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { LogoutDocument } from "@/graphql/gql/graphql";
 import { NavLink } from "../sidebar";
+import { useMemo } from "react";
 
 const AUTH_PATHS = [
   "/login",
@@ -70,14 +65,14 @@ export const PageLayout = ({
 
   // No layout for auth/public pages
   const isAuthPath = AUTH_PATHS.some(
-    (p) => pathname === p || pathname.startsWith(`${p}/`)
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
   );
   if (isAuthPath) return <>{children}</>;
 
   const isAdmin = userData.role?.toLowerCase() === "admin";
 
   // Routes only accessible to admins
-  const ADMIN_ROUTES = ["/users", "/roles", "/apps", "/approvals"];
+  const ADMIN_ROUTES = ["/users", "/roles", "/apps", "/approvals", "/admin"];
   const isAdminRoute =
     pathname === "/" ||
     ADMIN_ROUTES.some((r) => pathname === r || pathname.startsWith(`${r}/`));
@@ -100,8 +95,10 @@ export const PageLayout = ({
       pathname.startsWith("/portal/") ||
       pathname === "/profile");
 
-  const sidebarRoutes: NavLink[] = isUserDetailsRoute
-    ? [
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const sidebarRoutes: NavLink[] = useMemo(() => {
+    if (isUserDetailsRoute) {
+      return [
         {
           id: "overview",
           label: "Overview",
@@ -136,15 +133,15 @@ export const PageLayout = ({
           icon: (
             <IconShieldFilled
               className={cn("size-5 fill-zinc-500", {
-                "fill-foreground":
-                  pathname === `/users/${params.id}/sessions`,
+                "fill-foreground": pathname === `/users/${params.id}/sessions`,
               })}
             />
           ),
         },
-      ]
-    : isPortalRoute
-    ? [
+      ];
+    }
+    if (isPortalRoute) {
+      return [
         {
           id: "portal",
           label: "Mis Aplicaciones",
@@ -171,8 +168,11 @@ export const PageLayout = ({
             />
           ),
         },
-      ]
-    : [
+      ];
+    }
+
+    if (userData.role?.toLowerCase() === "admin") {
+      return [
         {
           id: "overview",
           label: "Overview",
@@ -252,6 +252,37 @@ export const PageLayout = ({
           ),
         },
       ];
+    }
+
+    return [
+      {
+        id: "portal",
+        label: "Mis Aplicaciones",
+        href: "/portal",
+        isActive: pathname === "/portal",
+        icon: (
+          <IconLayoutGridFilled
+            className={cn("size-5 fill-zinc-500", {
+              "fill-foreground": pathname === "/portal",
+            })}
+          />
+        ),
+      },
+      {
+        id: "profile",
+        label: "Mi Perfil",
+        href: "/profile",
+        isActive: pathname === "/profile",
+        icon: (
+          <IconUserFilled
+            className={cn("size-5 fill-zinc-500", {
+              "fill-foreground": pathname === "/profile",
+            })}
+          />
+        ),
+      },
+    ];
+  }, [isPortalRoute, isUserDetailsRoute, params.id, pathname, userData.role]);
 
   return (
     <div className="relative isolate flex min-h-svh w-full bg-white max-lg:flex-col lg:bg-zinc-100 dark:bg-zinc-900 dark:lg:bg-zinc-950">
@@ -279,7 +310,11 @@ export const PageLayout = ({
                       className="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden"
                       aria-hidden="true"
                     />
-                    <svg data-slot="icon" viewBox="0 0 20 20" aria-hidden="true">
+                    <svg
+                      data-slot="icon"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
                       <path d="M2 6.75C2 6.33579 2.33579 6 2.75 6H17.25C17.6642 6 18 6.33579 18 6.75C18 7.16421 17.6642 7.5 17.25 7.5H2.75C2.33579 7.5 2 7.16421 2 6.75ZM2 13.25C2 12.8358 2.33579 12.5 2.75 12.5H17.25C17.6642 12.5 18 12.8358 18 13.25C18 13.6642 17.6642 14 17.25 14H2.75C2.33579 14 2 13.6642 2 13.25Z"></path>
                     </svg>
                   </button>
