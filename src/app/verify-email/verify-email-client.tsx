@@ -1,6 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { VerifyEmailDocument } from "@/graphql/gql/graphql";
+import {
+  IconCircleCheckFilled,
+  IconHourglass,
+  IconX
+} from "@tabler/icons-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,7 +16,7 @@ export default function VerifyEmailClient() {
   const token = searchParams.get("token") ?? "";
   const [, verifyMutation] = useMutation(VerifyEmailDocument);
   const [status, setStatus] = useState<"loading" | "success" | "error">(
-    "loading"
+    "loading",
   );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -26,13 +31,14 @@ export default function VerifyEmailClient() {
       if (res.error) {
         setStatus("error");
         setErrorMsg(
-          res.error.graphQLErrors[0]?.message ?? "Error al verificar el correo."
+          res.error.graphQLErrors[0]?.message ??
+            "Error al verificar el correo.",
         );
       } else {
         setStatus("success");
       }
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return (
@@ -42,7 +48,7 @@ export default function VerifyEmailClient() {
           {status === "loading" && (
             <>
               <div className="size-12 rounded-full bg-blue-100 flex items-center justify-center text-2xl">
-                ⏳
+                <IconHourglass />
               </div>
               <h1 className="text-lg font-semibold text-zinc-900 dark:text-white">
                 Verificando correo...
@@ -53,7 +59,7 @@ export default function VerifyEmailClient() {
           {status === "success" && (
             <>
               <div className="size-12 rounded-full bg-green-100 flex items-center justify-center text-2xl">
-                ✅
+                <IconCircleCheckFilled />
               </div>
               <h1 className="text-lg font-semibold text-zinc-900 dark:text-white">
                 ¡Correo verificado!
@@ -71,7 +77,7 @@ export default function VerifyEmailClient() {
           {status === "error" && (
             <>
               <div className="size-12 rounded-full bg-red-100 flex items-center justify-center text-2xl">
-                ❌
+                <IconX />
               </div>
               <h1 className="text-lg font-semibold text-zinc-900 dark:text-white">
                 Error al verificar
