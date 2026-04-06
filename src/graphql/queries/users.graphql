@@ -1,0 +1,214 @@
+query Me {
+    me {
+        userID
+        fullName
+        userName
+        email
+        role {
+            id
+            name
+            description
+        }
+        phoneNumber
+        isVerified
+        profilePicture
+        isActive
+        createdAt
+        updatedAt
+    }
+}
+
+query GetProfile {
+    getProfile {
+        userID
+        fullName
+        userName
+        email
+        role {
+            id
+            name
+            description
+        }
+        phoneNumber
+        isVerified
+        profilePicture
+        isActive
+        createdAt
+        updatedAt
+    }
+}
+
+query GetUsers {
+    getUsers {
+        id
+        fullName
+        userName
+        email
+        role {
+            id
+            name
+            description
+        }
+        phoneNumber
+        isVerified
+        profilePicture
+        isActive
+        accountType
+        approval {
+            userId
+            status
+            requestedAt
+            reviewedAt
+            notes
+        }
+        createdAt
+        updatedAt
+    }
+}
+
+query GetUser($userId: ID!) {
+    getUser(id: $userId) {
+        id
+        fullName
+        userName
+        email
+        phoneNumber
+        isVerified
+        profilePicture
+        isActive
+        accountType
+        createdAt
+        updatedAt
+        role {
+            id
+            name
+            description
+        }
+        preferences {
+            id
+            userId
+            preferenceKey
+            preferenceValue
+            createdAt
+        }
+        sessions {
+            id
+            ipAddress
+            userAgent
+            isActive
+        }
+        loginHistory {
+            id
+            ipAddress
+            status
+            userAgent
+            attemptedAt
+        }
+        appAccess {
+            id
+            userId
+            appId
+            grantedAt
+            grantedBy
+            expiresAt
+            isActive
+            app {
+                id
+                name
+                description
+                icon
+                url
+            }
+            grantedByUser {
+                id
+                fullName
+                email
+            }
+        }
+        availableApps {
+            id
+            name
+            icon
+            description
+            isActive
+            url
+            createdAt
+        }
+        approval {
+            userId
+            requestedAt
+            notes
+            status
+        }
+    }
+}
+
+query ActiveSessions($userId: ID!) {
+  activeSessions(userId: $userId) {
+    id
+    userId
+    ipAddress
+    userAgent
+    isActive
+    createdAt
+    updatedAt
+    user {
+      id
+      fullName
+      userName
+      email
+    }
+  }
+}
+
+query UserApproval($userId: ID!) {
+    userApproval(userId: $userId) {
+        userId
+        status
+        requestedAt
+        reviewedAt
+        notes
+        user {
+            id
+            fullName
+            email
+        }
+    }
+}
+
+query MyApps {
+    myApps {
+        id
+        name
+        description
+        url
+        icon
+        isActive
+        createdAt
+        updatedAt
+    }
+}
+
+query UserAppAccess($userId: ID!) {
+    userAppAccess(userId: $userId) {
+        id
+        userId
+        appId
+        grantedAt
+        grantedBy
+        expiresAt
+        isActive
+        app {
+            id
+            name
+            description
+            icon
+            url
+        }
+        grantedByUser {
+            id
+            fullName
+            email
+        }
+    }
+}

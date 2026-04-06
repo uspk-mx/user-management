@@ -1,0 +1,63 @@
+mutation Login($input: Login!) {
+    login(input: $input) {
+        token
+        role
+    }
+}
+
+mutation Logout {
+    logout
+}
+
+mutation ReviewUserAccess($input: ReviewUserAccessInput!) {
+    reviewUserAccess(input: $input) {
+        userId
+        status
+        requestedAt
+        reviewedAt
+        reviewedBy {
+            id
+            fullName
+            email
+        }
+        notes
+    }
+}
+
+mutation RegisterUser($input: CreateUserInput!) {
+    registerUser(input: $input) {
+        id
+        fullName
+        userName
+        email
+        role {
+            id
+            name
+            description
+        }
+        phoneNumber
+        isVerified
+        profilePicture
+        isActive
+        accountType
+        createdAt
+        updatedAt
+    }
+}
+
+mutation ResetPassword($email: String!) {
+    resetPassword(email: $email)
+}
+
+mutation ChangePassword($token: String!, $password: String!) {
+    changePassword(token: $token, password: $password)
+}
+
+mutation VerifyEmail($token: String!) {
+    verifyEmail(token: $token) {
+        id
+        fullName
+        email
+        isVerified
+    }
+}

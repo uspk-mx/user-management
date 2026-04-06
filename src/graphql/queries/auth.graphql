@@ -1,0 +1,36 @@
+query ListRoles {
+    listRoles {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+    }
+}
+
+query PendingApprovals {
+    pendingApprovals {
+        id
+        fullName
+        userName
+        email
+        role {
+            id
+            name
+            description
+        }
+        phoneNumber
+        isVerified
+        profilePicture
+        isActive
+        accountType
+        approval {
+            userId
+            status
+            requestedAt
+            notes
+        }
+        createdAt
+        updatedAt
+    }
+}

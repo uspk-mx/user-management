@@ -1,0 +1,44 @@
+query Apps($filter: AppFilterInput, $pagination: PaginationInput) {
+  apps(filter: $filter, pagination: $pagination) {
+    edges {
+      cursor
+      node {
+        id
+        name
+        description
+        url
+        icon
+        isActive
+        createdAt
+        updatedAt
+        authorizedUsers {
+          id
+          fullName
+          isActive
+          isVerified
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    totalCount
+  }
+}
+
+
+query App($appId: ID!) {
+  app(id: $appId) {
+    id
+    name
+    description
+    url
+    icon
+    isActive
+    createdAt
+    updatedAt
+  }
+}

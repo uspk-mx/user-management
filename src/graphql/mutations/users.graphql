@@ -1,0 +1,29 @@
+mutation UpdateUser($updateUserId: ID!, $input: UpdateUserInput!) {
+  updateUser(id: $updateUserId, input: $input) {
+    isActive
+    fullName
+    email
+    approval {
+      userId
+      status
+      requestedAt
+      reviewedAt
+      notes
+    }
+  }
+}
+
+mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
+  updateUserProfile(input: $input) {
+    id
+    fullName
+    userName
+    email
+    phoneNumber
+    profilePicture
+  }
+}
+
+mutation UpdateUserPassword($input: UpdateUserPasswordInput!) {
+  updateUserPassword(input: $input)
+}
