@@ -85,6 +85,7 @@ export async function uploadFileToR2(formData: FormData, fileName?: string) {
       size: file.size,
       contentType: file.type,
     };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("❌ Error uploading to R2:", {
       error,

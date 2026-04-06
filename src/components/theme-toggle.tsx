@@ -68,7 +68,7 @@ export default function ThemeToggle({
             className="ml-2 text-sm font-medium truncate text-foreground"
             suppressHydrationWarning
           >
-            {themeLabel[theme] || "System"}
+            {themeLabel[theme as keyof typeof themeLabel] || "System"}
           </span>
         )}
       </label>

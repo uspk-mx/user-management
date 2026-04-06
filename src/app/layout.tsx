@@ -5,9 +5,6 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/toast";
-import { AppSidebar } from "@/components/custom-components/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { SiteHeader } from "@/components/custom-components/site-header";
 import { PageLayout } from "@/components/custom-components/page-layout";
 
 const interSans = Inter({

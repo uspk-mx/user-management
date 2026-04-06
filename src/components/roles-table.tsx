@@ -135,7 +135,7 @@ export function RolesTable({ rolesData }: RolesTableProps) {
                     <MenuSeparator />
                     <MenuItem
                       variant="destructive"
-                      onClick={() => handleOpenDelete(role)}
+                      onClick={() => handleOpenDelete(role as Roles)}
                     >
                       <TrashIcon />
                       Delete
