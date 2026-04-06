@@ -99,7 +99,7 @@ export function TablePagination({
         <p className="text-sm text-muted-foreground">Viendo</p>
         <Select
           value={String(pageSize)}
-          onValueChange={handlePageSize}
+          onValueChange={() => handlePageSize(String(pageSize))}
           items={PAGE_SIZE_OPTIONS.map((size) => ({
             label: String(size),
             value: String(size),

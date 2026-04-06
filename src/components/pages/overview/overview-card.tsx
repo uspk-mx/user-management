@@ -14,8 +14,8 @@ interface OverviewCardProps {
   badgeLabel?: string;
   badgeIcon?: React.ReactNode;
   details?: {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
   };
 }
 
@@ -44,10 +44,14 @@ export function OverviewCard({
       </CardHeader>
       {details ? (
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            {details.title}
-          </div>
-          <div className="text-muted-foreground">{details.description}</div>
+          {details.title && (
+            <div className="line-clamp-1 flex gap-2 font-medium">
+              {details.title}
+            </div>
+          )}
+          {details.description && (
+            <div className="text-muted-foreground">{details.description}</div>
+          )}
         </CardFooter>
       ) : null}
     </Card>

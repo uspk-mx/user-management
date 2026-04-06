@@ -109,7 +109,6 @@ export function ApprovalsTable({ approvalsData }: ApprovalsTableProps) {
       ) : (
         <EmptyBlock title="No hay solicitudes de acceso pendientes." />
       )}
-      .{" "}
       {approvalsData?.length && approvalsData.length > 6 ? (
         <TablePagination
           totalCount={displayApprovals.length}

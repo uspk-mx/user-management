@@ -14,7 +14,6 @@ export interface NavLink {
 export function Sidebar({ routesTree }: { routesTree: NavLink[] }) {
   return (
     <aside className="md:-order-1 dark md:w-60 rounded-3xl shadow-2xl bg-sidebar text-foreground p-5 flex flex-col gap-4 border border-transparent dark:border-border/64">
-      {/* Logo */}
       <div className="mb-4">
         <Link href="/">
           <span className="sr-only">Logo</span>
@@ -26,7 +25,7 @@ export function Sidebar({ routesTree }: { routesTree: NavLink[] }) {
           />
         </Link>
       </div>
-      {/* Navigation menu */}
+
       <div className="flex-1">
         <div className="uppercase font-medium text-xs text-muted-foreground/64 mb-2">
           User Management
@@ -51,7 +50,7 @@ export function Sidebar({ routesTree }: { routesTree: NavLink[] }) {
           </ul>
         </nav>
       </div>
-      {/* Market sentiment */}
+      
       <div>
         <div className="uppercase font-medium text-xs text-muted-foreground/64 mb-4">
           Market sentiment
