@@ -17,7 +17,7 @@ export function UrqlProvider({ children }: { children: ReactNode }) {
       isClient,
     });
     const client = createClient({
-      url: API_URL,
+      url: API_URL as string,
       exchanges: [cacheExchange, ssr, fetchExchange],
       suspense: true,
       fetchOptions: {

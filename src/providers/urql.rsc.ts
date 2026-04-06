@@ -8,7 +8,7 @@ export async function getServerClient() {
   const cookieValue = cookieStore.get("uspk_gateway_token")?.value ?? "";
 
   return createClient({
-    url: API_URL,
+    url: API_URL as string,
     exchanges: [cacheExchange, fetchExchange],
     fetchOptions: {
       credentials: "include",
