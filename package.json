@@ -17,7 +17,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@tabler/icons-react": "^3.35.0",
     "@urql/next": "^2.0.0",
-    "@uspk/components": "^1.3.1",
+    "@uspk/components": "^1.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "graphql": "^16.11.0",
