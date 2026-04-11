@@ -8,9 +8,10 @@ import {
   CardPanel,
   CardTitle,
 } from "@/components/ui/card";
-import { Field, FieldControl, FieldLabel } from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Form } from "@/components/ui/form";
 import { ChangePasswordDocument } from "@/graphql/gql/graphql";
+import { PasswordInput } from "@uspk/components";
 import { GraphQLError } from "graphql";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -98,7 +99,7 @@ export default function ResetPasswordForm() {
           <div className="flex flex-col gap-4">
             <Field>
               <FieldLabel>Nueva contraseña</FieldLabel>
-              <FieldControl
+              <PasswordInput
                 type="password"
                 placeholder="***********"
                 name="password"
@@ -107,7 +108,7 @@ export default function ResetPasswordForm() {
             </Field>
             <Field>
               <FieldLabel>Confirmar contraseña</FieldLabel>
-              <FieldControl
+              <PasswordInput
                 type="password"
                 placeholder="***********"
                 name="confirmPassword"

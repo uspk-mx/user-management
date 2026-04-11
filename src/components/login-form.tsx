@@ -17,6 +17,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "urql";
 import { AlertError } from "./alert-error";
+import { PasswordInput } from "@uspk/components"
 
 export default function LoginForm() {
   const [, loginMutation] = useMutation(LoginDocument);
@@ -92,9 +93,9 @@ export default function LoginForm() {
             </Field>
             <Field>
               <FieldLabel>Contraseña</FieldLabel>
-              <FieldControl
+              <PasswordInput
                 type="password"
-                placeholder="***********"
+                placeholder="•••••••••••"
                 name="password"
               />
             </Field>

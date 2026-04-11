@@ -17,7 +17,7 @@ export function PageHeader({
 }) {
   return (
     <>
-      <div className="flex flex-col md:flex-row md:items-center gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row md:items-center gap-3 mb-6!">
         {hasBackButton && (
           <Button
             variant="ghost"
@@ -28,7 +28,7 @@ export function PageHeader({
           </Button>
         )}
         <div className="flex-1 flex gap-3">
-          <h1 className="text-2xl/8 font-semibold text-zinc-950 sm:text-xl/8 dark:text-white">
+          <h1 className="text-2xl/8! font-semibold text-zinc-950 sm:text-xl/8! dark:text-white">
             {title}
           </h1>
         </div>

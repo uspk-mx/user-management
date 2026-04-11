@@ -1,15 +1,14 @@
+import { AppsQuery } from "@/graphql/gql/graphql";
+import { useGetApps } from "@/hooks/use-get-apps";
+import { getInitials } from "@/lib/utils";
+import { IconLogout, IconUser } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
+import { AppSelector } from "../app-selector";
+import ThemeToggle from "../theme-toggle";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Menu, MenuGroup, MenuItem, MenuPopup, MenuTrigger } from "../ui/menu";
-import { IconLogout, IconSettings, IconUser } from "@tabler/icons-react";
 import { UserMenuProps } from "../user-menu";
-import { getInitialAppByName, getInitials } from "@/lib/utils";
-import ThemeToggle from "../theme-toggle";
-import { AppSelector } from "../app-selector";
-import { AppsQuery } from "@/graphql/gql/graphql";
-import { globalConfig } from "@/lib/config";
-import { useGetApps } from "@/hooks/use-get-apps";
 
 interface NavLink {
   id: string;

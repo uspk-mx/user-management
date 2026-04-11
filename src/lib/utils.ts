@@ -1,4 +1,4 @@
-import { App, AppEdge, AppsQuery } from "@/graphql/gql/graphql";
+import { AppsQuery } from "@/graphql/gql/graphql";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

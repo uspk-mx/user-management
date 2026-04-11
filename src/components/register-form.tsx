@@ -11,6 +11,7 @@ import {
 import { Field, FieldControl, FieldLabel } from "@/components/ui/field";
 import { Form } from "@/components/ui/form";
 import { RegisterUserDocument } from "@/graphql/gql/graphql";
+import { PasswordInput } from "@uspk/components";
 import { GraphQLError } from "graphql";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -67,10 +68,7 @@ export default function RegisterForm() {
       >
         {serverErrors.map((item) => (
           <div className="px-4" key={item.message}>
-            <AlertError
-              title="Ocurrió un error"
-              description={item.message}
-            />
+            <AlertError title="Ocurrió un error" description={item.message} />
           </div>
         ))}
         {passwordError && (
@@ -109,7 +107,7 @@ export default function RegisterForm() {
             </Field>
             <Field>
               <FieldLabel>Contraseña</FieldLabel>
-              <FieldControl
+              <PasswordInput
                 type="password"
                 placeholder="***********"
                 name="password"
@@ -118,7 +116,7 @@ export default function RegisterForm() {
             </Field>
             <Field>
               <FieldLabel>Confirmar contraseña</FieldLabel>
-              <FieldControl
+              <PasswordInput
                 type="password"
                 placeholder="***********"
                 name="confirmPassword"

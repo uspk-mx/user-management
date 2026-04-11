@@ -5,9 +5,10 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/toast";
-import { PageLayout } from "@/components/custom-components/page-layout";
+// import { PageLayout } from "@/components/custom-components/page-layout";
 import { getApps } from "@/lib/services/apps";
 import { globalConfig, logos } from "@/lib/config";
+import { MainPageLayout } from "@/components/custom-components/main-page-layout";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -49,17 +50,17 @@ export default async function RootLayout({
         >
           <UrqlProvider>
             <ToastProvider position="top-center">
-              <PageLayout
+              <MainPageLayout
                 userData={{
-                  email: userData?.email ?? "",
-                  fullName: userData?.fullName ?? "",
-                  profilePicture: userData?.profilePicture ?? "",
-                  role: userData?.role?.name ?? "",
+                  email: userData?.email || "",
+                  fullName: userData?.fullName || "",
+                  role: userData?.role?.name || "",
+                  profilePicture: userData?.profilePicture || "",
                 }}
                 appsData={appsData}
               >
                 {children}
-              </PageLayout>
+              </MainPageLayout>
             </ToastProvider>
           </UrqlProvider>
         </ThemeProvider>
